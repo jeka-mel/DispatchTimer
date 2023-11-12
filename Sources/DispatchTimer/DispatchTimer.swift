@@ -1,4 +1,4 @@
-import Foundation
+import Dispatch
 #if canImport(Combine)
 import Combine
 #endif
@@ -13,11 +13,11 @@ open class DispatchTimer {
         case resumed
     }
 
-    public let timeInterval: TimeInterval
+    public let timeInterval: Double
     public let repeating: Bool
     /// The amount of time after the scheduled fire date that the timer may fire.
     @UnfairLocked
-    public var tolerance: TimeInterval = 0
+    public var tolerance: Double = 0
 
     private lazy var timer: DispatchSourceTimer = {
         let t = DispatchSource.makeTimerSource()
@@ -57,7 +57,7 @@ open class DispatchTimer {
 
     private(set) var state: State = .suspended
 
-    public init(timeInterval: TimeInterval, repeating: Bool, handler: ((DispatchTimer) -> Void)? = nil) {
+    public init(timeInterval: Double, repeating: Bool, handler: ((DispatchTimer) -> Void)? = nil) {
         self.timeInterval = timeInterval
         self.eventHandler = handler
         self.repeating = repeating
