@@ -1,4 +1,4 @@
-import Foundation
+import os
 
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 @propertyWrapper
